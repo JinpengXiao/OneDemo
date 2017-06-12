@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Speech2Text</title>
+<!-- 引入jQuery库 -->
+<script src="{{ url_for('static',filename='js/jquery-1.9.0.min.js') }}"></script>
+<script>
+	function sendTextData(){
+		var text=$("#text").val();
+		var url=document.location.protocol+"//"+document.location.host+"/dotext2speech";
+		$.ajax({
+			url:url,
+			data:"message=" + text + "",
+			type:"GET",
+			cache:false,
+			dataType:'text',
+			error:function(){
+				console.log("Some errors happened.");
+			},
+			success:function(data){
+				$("#audio").attr("src",data);
+			}
+		}
+				);
+	}
+</script>
+</head>
+<body>
+<div>
+	<!-- <form action="doLogin" method = "post">  -->
+	<input type="text" name="text" id="text" size="70" />
+	<input type="button" onclick="sendTextData()" name="texttospeech" value="Text to Speech" /><br/><br/>
+	<audio name="audio" id="audio" controls autoplay>当前浏览器不支持audio标签</audio>
+	<!-- </form> -->
+</div>
+
+</body>
+</html>
