@@ -8,6 +8,8 @@ from os import remove
 from watson_developer_cloud.text_to_speech_v1 import TextToSpeechV1
 
 def text2speech(fileName='',message=''):
+    print('*********Testing No.3*********')
+    
     if (fileName == ''):
         fileName = '/Users/IBM_ADMIN/workspace/ProjectForPython/FirstDemo/tmp/output.wav'
         print(fileName)

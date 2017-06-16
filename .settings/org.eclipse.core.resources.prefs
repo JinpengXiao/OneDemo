@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//app/__init__.py=UTF-8
 encoding//app/templates/text2speech.html=UTF-8
+encoding//app/view/Views.py=UTF-8
+encoding/run.py=UTF-8

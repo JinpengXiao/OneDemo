@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
+<!-- <head>标签用于定义文档的头部，他是所有头部元素的容器。<head>中的元素可以引用脚本，指示浏览器在哪里找到样式表，提供元信息等
+     文档的头部描述了文档的各种属性和信息，包括文档的标题，在web中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正
+     作为内容显示给读者。
+     用在head部分的标签：<base>,<link>,<meta>,<script>,<style>,<title>
+     <title>定义文档的标题，它是head部分中唯一必需的元素。
+
+ //-->
 <head>
 <meta charset="UTF-8">
 <title>Speech2Text</title>
 <!-- 引入jQuery库 -->
+<!-- javascript是所有现代浏览器以及HTML5中的默认脚本语言 
+     脚本可位于HTML的<body>或<head>部分中，或者同时存在于两个部分中
+     通常做法是把函数放入<head>部分中，或者放在页面底部。这样就可以把他们安置到同一处位置，不会干扰页面的内容
+     
+     外部的JavaScript：
+     也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。
+     外部javascript文件的扩展名是.js
+     如需使用外部文件，请在<scritp>标签的"src"属性中设置该.js文件
+
+//-->
 <script src="{{ url_for('static',filename='js/jquery-1.9.0.min.js') }}"></script>
 <script>
 	function sendTextData(){
 		var text=$("#text").val();
+		//alert(text);
+		//text is :输入的文本信息
 		var url=document.location.protocol+"//"+document.location.host+"/dotext2speech";
+		//alert(url);
+		//url is http://127.0.0.1:5000/dotext2speech
+		//dotext2speech中定义了调用watson的API
 		$.ajax({
 			url:url,
 			data:"message=" + text + "",
@@ -19,6 +41,8 @@
 				console.log("Some errors happened.");
 			},
 			success:function(data){
+				
+				//alert(data); data == "/static/tmp/*****message.wav" 即生成的音频文件
 				$("#audio").attr("src",data);
 			}
 		}
@@ -26,11 +50,17 @@
 	}
 </script>
 </head>
-<body>
+<body bgcolor="pink">
+<!-- <div>可以定义文档中的分区或节（division/section） 
+     <div>标签可以把文档分割为独立的，不同的部分。它可以用作严格的组织工具，并且不实用任何格式与其关联
+
+//-->
 <div>
 	<!-- <form action="doLogin" method = "post">  -->
 	<input type="text" name="text" id="text" size="70" />
-	<input type="button" onclick="sendTextData()" name="texttospeech" value="Text to Speech" /><br/><br/>
+	<button type="button" onclick="sendTextData()" name="texttospeech">Text to Speech</button><br/><br/>
+	<!-- <input type="button" onclick="sendTextData()" name="texttospeech" value="Text to Speech" /><br/><br/> -->
+	
 	<audio name="audio" id="audio" controls autoplay>当前浏览器不支持audio标签</audio>
 	<!-- </form> -->
 </div>
