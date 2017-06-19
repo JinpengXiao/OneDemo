@@ -8,47 +8,52 @@
 
  //-->
 <head>
-<meta charset="UTF-8">
-<title>Speech2Text</title>
-<!-- 引入jQuery库 -->
-<!-- javascript是所有现代浏览器以及HTML5中的默认脚本语言 
-     脚本可位于HTML的<body>或<head>部分中，或者同时存在于两个部分中
-     通常做法是把函数放入<head>部分中，或者放在页面底部。这样就可以把他们安置到同一处位置，不会干扰页面的内容
-     
-     外部的JavaScript：
-     也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。
-     外部javascript文件的扩展名是.js
-     如需使用外部文件，请在<scritp>标签的"src"属性中设置该.js文件
+    <meta charset="UTF-8">
+    <title>Speech2Text</title>
+    <!-- 引入jQuery库 -->
+    <!-- javascript是所有现代浏览器以及HTML5中的默认脚本语言
+         脚本可位于HTML的<body>或<head>部分中，或者同时存在于两个部分中
+         通常做法是把函数放入<head>部分中，或者放在页面底部。这样就可以把他们安置到同一处位置，不会干扰页面的内容
 
-//-->
-<script src="{{ url_for('static',filename='js/jquery-1.9.0.min.js') }}"></script>
-<script>
-	function sendTextData(){
-		var text=$("#text").val();
-		//alert(text);
-		//text is :输入的文本信息
-		var url=document.location.protocol+"//"+document.location.host+"/dotext2speech";
-		//alert(url);
-		//url is http://127.0.0.1:5000/dotext2speech
-		//dotext2speech中定义了调用watson的API
-		$.ajax({
-			url:url,
-			data:"message=" + text + "",
-			type:"GET",
-			cache:false,
-			dataType:'text',
-			error:function(){
-				console.log("Some errors happened.");
-			},
-			success:function(data){
-				
-				//alert(data); data == "/static/tmp/*****message.wav" 即生成的音频文件
-				$("#audio").attr("src",data);
-			}
-		}
-				);
-	}
-</script>
+         外部的JavaScript：
+         也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。
+         外部javascript文件的扩展名是.js
+         如需使用外部文件，请在<scritp>标签的"src"属性中设置该.js文件
+
+    //-->
+
+    <!-- url_for()链接辅助函数，使用url_for()生成动态地址时，将动态部分作为关键字参数传入。
+    例如，url_for('user',name='john',_external=True)的返回结果是http://localhost:5000/user/john
+    //-->
+
+    <script src="{{ url_for('static',filename='js/jquery-1.9.0.min.js') }}"></script>
+    <script>
+        function sendTextData() {
+            var text = $("#text").val();
+            //alert(text);
+            //text is :输入的文本信息
+            var url = document.location.protocol + "//" + document.location.host + "/dotext2speech";
+            //alert(url);
+            //url is http://127.0.0.1:5000/dotext2speech
+            //dotext2speech中定义了调用watson的API
+            $.ajax({
+                    url: url,
+                    data: "message=" + text + "",
+                    type: "GET",
+                    cache: false,
+                    dataType: 'text',
+                    error: function () {
+                        console.log("Some errors happened.");
+                    },
+                    success: function (data) {
+
+                        //alert(data); data == "/static/tmp/*****message.wav" 即生成的音频文件
+                        $("#audio").attr("src", data);
+                    }
+                }
+            );
+        }
+    </script>
 </head>
 <body bgcolor="pink">
 <!-- <div>可以定义文档中的分区或节（division/section） 
@@ -56,13 +61,14 @@
 
 //-->
 <div>
-	<!-- <form action="doLogin" method = "post">  -->
-	<input type="text" name="text" id="text" size="70" />
-	<button type="button" onclick="sendTextData()" name="texttospeech">Text to Speech</button><br/><br/>
-	<!-- <input type="button" onclick="sendTextData()" name="texttospeech" value="Text to Speech" /><br/><br/> -->
-	
-	<audio name="audio" id="audio" controls autoplay>当前浏览器不支持audio标签</audio>
-	<!-- </form> -->
+    <!-- <form action="doLogin" method = "post">  -->
+    <input type="text" name="text" id="text" size="70"/>
+    <button type="button" onclick="sendTextData()" name="texttospeech">Text to Speech</button>
+    <br/><br/>
+    <!-- <input type="button" onclick="sendTextData()" name="texttospeech" value="Text to Speech" /><br/><br/> -->
+
+    <audio name="audio" id="audio" controls autoplay>当前浏览器不支持audio标签</audio>
+    <!-- </form> -->
 </div>
 
 </body>

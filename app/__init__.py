@@ -5,7 +5,7 @@
 '''
 from flask import Flask
 
-#穿件flask这个类的实例，把包名app传递给flask，这样flask才会知道去哪里寻找模块，静态文件等等
+#创建flask这个类的实例，把包名app传递给flask，这样flask才会知道去哪里寻找模块，静态文件等等
 app = Flask(__name__)
 
 from app.view import Views

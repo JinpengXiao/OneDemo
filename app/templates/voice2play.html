@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talk to Watson</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--
+        <link>元素被定义为HTML文档的head部分，可定义两个连接文档之间的关系。
+        rel:设置或返回当前文档与目标URL之间的关系，下例中表示的是一个图标
+        href属性是一个可读可写的字符串，可设置或返回当前显示文档的完整URL
+    //-->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/ionicons.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script src="{{ url_for('static',filename='js/jquery-1.9.0.min.js') }}"></script>
+
+
+</head>
+<body>
+<header class="_demo--heading">
+    <div class="_demo--container">
+        <a class="wordmark" href="index.jsp">
+            <span class="wordmark--left">Talk to</span>
+            <span class="wordmark--right">Watson</span>
+        </a>
+
+
+    </div>
+
+</header>
+<div class="_demo--container">
+    <article class="_demo--content base--article page" ref="chatbot">
+        <div class="_content--dialog">
+            <div class="chat-window">
+                <div class="chat-box">
+                    <div class="chat-box--pane">
+                        <div class="chat-box--item_WATSON chat-box--item chat-box--item_HIDDEN">
+                            <div class="chat-box--container">
+                                <div class="img-container chat-box--avatar chat-box--avatar_WATSON">
+                                    <img src="static/images/icons/avatar-watson.svg" class="chat-box--avatar-img"/>
+                                </div>
+                                >
+                                <div class="chat-box--message">
+                                    <div class="chat-box--message-vertical">
+                                        <p class="chat-box--message-text base--p"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-box--item_YOU chat-box--item chat-box--item_HIDDEN">
+                            <div class="chat-box--container">
+                                <div class="chat-box--message">
+                                    <div class="chat-box--message-vertical">
+                                        <p class="chat-box--message-text base--p"></p>
+                                    </div>
+                                </div>
+                                <div class="img-container chat-box--avatar chat-box--avatar_YOU">
+                                    <img src="static/images/icons/avatar-me.svg" class="chat-box--avatar-img"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- adding extra space hack -->
+                        <div class="loader">
+                            <div class="loader--fallback">
+                                <img src="static/images/watson.gif" width="50" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="text" placeholder="Type a response and hit enter" value="" autocomplete="off"
+                       class="chat-window--message-input base--text-input ui-input-message"/>
+                <input type="button" value="Speak" class="base--button ui-button-microphone" />
+            </div>
+        </div>
+
+        <div class="ui-transcription"></div>
+    </article>
+
+</div>
+<script src="static/js/talk-to-watson.js"></script>
+<script src="static/js/watson-speech.js"></script>
+
+</body>
+
+
+</html>>
+
+
+
